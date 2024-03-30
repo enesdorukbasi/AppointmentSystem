@@ -1,0 +1,17 @@
+﻿@model LoginDTO
+
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="DoctorLogin" asp-controller="Auth" method="post">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Kimlik Numarası</label>
+        <input asp-for="@Model.IdentifierNumber" type="email" class="form-control" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input asp-for="@Model.Password" type="password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+</form>
