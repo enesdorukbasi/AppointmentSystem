@@ -1,0 +1,35 @@
+﻿@model List<Appointment>
+@{
+    Layout = "_Layout";
+}
+
+<a asp-action="Create" asp-controller="Appointment">Yeni Randevu</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col">Başlangıç Tarih</th>
+            <th scope="col">Bitiş Tarih</th>
+            <th scope="col">Doktor Ad-Soyad</th>
+            <th scope="col">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <th>@appointment.AppointmentID</th>
+                <td>@appointment.Description</td>
+                <td>@appointment.StartDate</td>
+                <td>@appointment.EndDate</td>
+                <td>@appointment.DoctorUser?.Card</td>
+                <td>
+                    <a asp-route-id="@appointment.AppointmentID" asp-action="Delete" asp-controller="Appointment" class="btn btn-danger">Sil</a>
+                    <a asp-route-id="@appointment.AppointmentID" asp-action="Update" asp-controller="Appointment" class="btn btn-primary">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

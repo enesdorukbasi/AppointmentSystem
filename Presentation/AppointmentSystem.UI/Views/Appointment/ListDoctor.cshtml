@@ -1,0 +1,30 @@
+﻿@model List<Appointment>
+@{
+    Layout = "_Layout";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col">Başlangıç Tarih</th>
+            <th scope="col">Bitiş Tarih</th>
+            <th scope="col">Hasta Ad-Soyad</th>
+            <th scope="col">Hasta Kimlik No</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <th>@appointment.AppointmentID</th>
+                <td>@appointment.Description</td>
+                <td>@appointment.StartDate</td>
+                <td>@appointment.EndDate</td>
+                <td>@appointment.PatientUser?.FullName</td>
+                <td>@appointment.PatientUser?.IdentifierNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>

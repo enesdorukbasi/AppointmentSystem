@@ -21,7 +21,7 @@ namespace AppointmentSystem.Application.Features.CQRS.Handlers.AppointmentHandle
         {
             try
             {
-                var unchangedData = await _appointmentRepository.GetById(request.PatientId);
+                var unchangedData = await _appointmentRepository.GetById(request.AppointmentID);
                 if (unchangedData != null)
                 {
                     unchangedData.StartDate = request.StartDate;

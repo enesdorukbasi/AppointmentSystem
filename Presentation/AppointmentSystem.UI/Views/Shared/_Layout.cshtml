@@ -11,14 +11,41 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Randevu Sistemi</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-action="DoctorLogin" asp-controller="Auth">Doktor Giriş</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-action="PatientLogin" asp-controller="Auth">Hasta Giriş</a>
-                    </li>
-                </ul>
+                @if (User.Claims.Count() <= 0)
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-action="DoctorLogin" asp-controller="Auth">Doktor Giriş</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-action="PatientLogin" asp-controller="Auth">Hasta Giriş</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if(User.Claims.Single(x=>x.Type == "fullName").Value.Contains("."))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-action="ListDoctor" asp-controller="Appointment">Randevularım</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-action="ListPatient" asp-controller="Appointment">Randevularım</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-action="LogOut" asp-controller="Auth">Çıkış Yap</a>
+                        </li>
+                    </ul>
+                    @if (User.Claims.Count() > 0)
+                    {
+                        <h5>@(User.Claims.Single(x => x.Type == "fullName").Value ?? "")</h5>
+                    }
+                }
             </div>
         </div>
     </nav>

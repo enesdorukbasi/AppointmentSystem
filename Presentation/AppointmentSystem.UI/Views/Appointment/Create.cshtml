@@ -1,0 +1,22 @@
+﻿@model CreateAppointmentDTO
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Create" asp-controller="Appointment" method="post">
+    <div class="mb-3">
+        <label class="form-label">Başlangıç Tarihi : </label>
+        <input type="datetime-local" class="form-control" asp-for="@Model.StartDate">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Açıklama : </label>
+        <input type="text" class="form-control" asp-for="@Model.Description">
+    </div>
+    <select class="form-control" asp-for="@Model.DoctorId" asp-items="@Model.DoctorUsers">
+        <option value="">Seçiniz</option>
+    </select>
+    <div class="button-container">
+        <button type="submit" class="btn btn-primary">Gönder</button>
+        <button asp-action="ListPatient" asp-controller="Appointment" class="btn btn-danger">İptal</button>
+    </div>
+</form>

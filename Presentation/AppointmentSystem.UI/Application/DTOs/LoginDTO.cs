@@ -1,4 +1,4 @@
-﻿namespace AppointmentSystem.UI.DTOs
+﻿namespace AppointmentSystem.UI.Application.DTOs
 {
     public class LoginDTO
     {

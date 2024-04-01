@@ -1,4 +1,4 @@
-﻿namespace AppointmentSystem.UI.Models
+﻿namespace AppointmentSystem.UI.Domain.Models
 {
     public class Policlinic
     {

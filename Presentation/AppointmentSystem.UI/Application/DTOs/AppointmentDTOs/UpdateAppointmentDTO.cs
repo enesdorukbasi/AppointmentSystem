@@ -1,6 +1,6 @@
-﻿namespace AppointmentSystem.UI.Models
+﻿namespace AppointmentSystem.UI.Application.DTOs
 {
-    public class Appointment
+    public class UpdateAppointmentDTO
     {
         public int AppointmentID { get; set; }
         public DateTime StartDate { get; set; }
@@ -10,7 +10,5 @@
         public int DoctorId { get; set; }
         public bool IsClosedByDoctor { get; set; }
         public bool IsCancelled { get; set; }
-        public PatientUser? PatientUser { get; set; }
-        public DoctorUser? DoctorUser { get; set; }
     }
 }

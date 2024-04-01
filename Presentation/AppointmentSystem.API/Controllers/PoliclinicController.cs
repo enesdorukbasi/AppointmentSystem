@@ -2,6 +2,7 @@
 using AppointmentSystem.Application.Features.CQRS.Commands.PoliclinicCommands;
 using AppointmentSystem.Application.Features.CQRS.Queries.PoliclinicQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace AppointmentSystem.API.Controllers
         {
             _mediator = mediator;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -31,21 +32,21 @@ namespace AppointmentSystem.API.Controllers
             var response = await _mediator.Send(new GetByIdPoliclinicQueryRequest() { PoliclinicId = id });
             return this.ReturnResponseForIDtoExtension(response);
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreatePoliclinicCommandRequest request)
         {
             var response = await _mediator.Send(request);
             return this.ReturnResponseForIDtoExtension(response);
         }
-
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update(UpdatePoliclinicCommandRequest request)
         {
             var response = await _mediator.Send(request);
             return this.ReturnResponseForIDtoExtension(response);
         }
-
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete(DeletePoliclinicCommandRequest request)
         {

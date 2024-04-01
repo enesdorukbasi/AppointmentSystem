@@ -1,8 +1,6 @@
-﻿using AppointmentSystem.Application.DTOs.PoliclinicDTOs;
-
-namespace AppointmentSystem.Application.DTOs.DoctorUserDTOs
+﻿namespace AppointmentSystem.UI.Application.DTOs
 {
-    public class DoctorUserListDTO
+    public class DoctorUserForAppointmentDTO
     {
         public int AppUserId { get; set; }
         public string? Name { get; set; }
@@ -10,7 +8,5 @@ namespace AppointmentSystem.Application.DTOs.DoctorUserDTOs
         public string FullName { get { return Name + " " + Surname; } }
         public string? Degree { get; set; }
         public string? Card { get { return Degree + ". " + FullName; } }
-        public int PoliclinicId { get; set; }
-        public PoliclinicByDoctorDTO? Policlinic { get; set; }
     }
 }

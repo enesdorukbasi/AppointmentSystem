@@ -13,9 +13,21 @@ namespace AppointmentSystem.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(List<Expression<Func<T, object>>>? includes = null)
         {
-            return await _context.Set<T>().AsNoTracking().ToListAsync();
+            var query = _context.Set<T>().AsNoTracking();
+            if (query != null)
+            {
+                if (includes != null)
+                {
+                    foreach (var include in includes)
+                    {
+                        query = query.Include(include);
+                    }
+                }
+                return await query.ToListAsync();
+            }
+            return [];
         }
 
         public async Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter, List<Expression<Func<T, object>>>? includes = null)
@@ -40,7 +52,7 @@ namespace AppointmentSystem.Persistence.Repositories
             return await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        public async Task<T?> GetById(object id)
+        public async Task<T?> GetById(object id, List<Expression<Func<T, object>>>? includes = null)
         {
             return await _context.Set<T>().FindAsync(id);
         }

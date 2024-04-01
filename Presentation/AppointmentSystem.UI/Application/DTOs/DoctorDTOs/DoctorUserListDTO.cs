@@ -1,4 +1,4 @@
-﻿namespace AppointmentSystem.UI.DTOs.DoctorDTOs
+﻿namespace AppointmentSystem.UI.Application.DTOs
 {
     public class DoctorUserListDTO
     {
